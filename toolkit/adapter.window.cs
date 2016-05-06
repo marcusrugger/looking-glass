@@ -21,8 +21,12 @@ public abstract class Window
 {
     public event EventHandler<DrawEventArgs> OnDraw;
 
-    public Window()
-    {}
+    readonly Adapter.Context context;
+
+    protected Window(Adapter.Context context)
+    {
+        this.context = context;
+    }
 
     protected void RaiseDrawEvent(Flatland.Canvas canvas)
     {

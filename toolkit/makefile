@@ -1,6 +1,10 @@
 
-SOURCE = 	toolkit.window.cs		\
-			adapter.window.cs
+SOURCE = 	toolkit.window.cs				\
+			toolkit.window.application.cs	\
+			adapter.context.cs				\
+			adapter.window.cs				\
+			adapter.gtk-sharp.context.cs	\
+			adapter.gtk-sharp.window.cs
 
 
 NUNIT_VERSION		=	nunit-3.2.1
@@ -13,8 +17,8 @@ BIN_DIR		= $(ROOT_DIR)/bin
 DLL_NAME	= lookingglass.tookit.dll
 TARGET		= $(BIN_DIR)/$(DLL_NAME)
 
-INTERFACES  = $(BIN_DIR)/flatland.interfaces.dll
-PACKAGES	= -pkg:dotnet
+INTERFACES  = -r:$(BIN_DIR)/flatland.interfaces.dll -r:$(BIN_DIR)/flatland.common.dll -r:$(BIN_DIR)/flatland.cairo.dll
+PACKAGES	= -pkg:gtk-sharp-3.0
 
 
 all:		$(TARGET)
@@ -31,9 +35,9 @@ runtests:	tests.dll
 
 
 $(TARGET):	$(SOURCE)
-	mcs -out:$@ -target:library $(PACKAGES) -r:$(INTERFACES) $^
+	mcs -out:$@ -target:library $(PACKAGES) $(INTERFACES) $^
 
 
 tests.dll:	toolkit.window.test.cs				\
 			$(SOURCE)
-	mcs -out:$@ -target:library $(PACKAGES) -r:$(INTERFACES) -r:$(NUNIT_FRAMEWORK) $^
+	mcs -out:$@ -target:library $(PACKAGES) $(INTERFACES) -r:$(NUNIT_FRAMEWORK) $^
