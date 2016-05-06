@@ -14,7 +14,7 @@ public class Toolkit
 
     public ApplicationWindow CreateApplicationWindow()
     {
-        return new Toolkit.ApplicationWindow( context.CreateWindow() );
+        return new LookingGlass.Toolkit.ApplicationWindow( context.CreateWindow() );
     }
 }
 

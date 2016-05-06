@@ -4,16 +4,19 @@ using System;
 
 namespace LookingGlass.Adapter.GtkSharp {
 
+using CreateCanvas = Func<Cairo.Context, Flatland.Canvas>;
+
 
 public class Context : Adapter.Context
 {
-    protected Context()
+    readonly CreateCanvas fnCreateCanvas = (c) => Flatland.Core.Canvas.Create( Flatland.CairoGraphics.Context.Create(c) );
+
+    public Context()
     {}
 
     public override Adapter.Window CreateWindow()
     {
-        Func<Cairo.Context, Flatland.Canvas> fn = (c) => Flatland.Core.Canvas.Create( Flatland.CairoGraphics.Context.Create(c) );
-        return new GtkSharp.Window(this, fn);
+        return new GtkSharp.Window(this, fnCreateCanvas);
     }
 }
 
