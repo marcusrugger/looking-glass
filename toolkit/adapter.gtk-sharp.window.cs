@@ -16,6 +16,11 @@ public class Window : Adapter.Window
         this.child = new GtkSharpWindow(this, fnCreateCanvas);
     }
 
+    public override void Show()
+    {
+        child.ShowAll();
+    }
+
     class GtkSharpWindow : Gtk.Window
     {
         readonly GtkSharp.Window parent;
@@ -26,7 +31,6 @@ public class Window : Adapter.Window
             this.parent = parent;
             this.fnCreateCanvas = fnCreateCanvas;
             SetDefaultSize(1000, 1000);
-            ShowAll();
         }
 
         protected override bool OnDrawn(Cairo.Context context)

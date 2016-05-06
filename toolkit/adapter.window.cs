@@ -27,6 +27,8 @@ public abstract class Window
     {
         this.context = context;
     }
+    
+    public abstract void Show();
 
     protected void RaiseDrawEvent(Flatland.Canvas canvas)
     {

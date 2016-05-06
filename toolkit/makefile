@@ -2,10 +2,14 @@
 SOURCE = 	toolkit.toolkit.cs				\
 			toolkit.window.cs				\
 			toolkit.window.application.cs	\
+			toolkit.factory.gtk-sharp.cs	\
 			adapter.context.cs				\
 			adapter.window.cs				\
 			adapter.gtk-sharp.context.cs	\
 			adapter.gtk-sharp.window.cs
+
+APP_SOURCE	=	lookingglass.cs			\
+				lookingglass.window.cs
 
 
 NUNIT_VERSION		=	nunit-3.2.1
@@ -38,9 +42,9 @@ runtests:	tests.dll
 	mono $(NUNIT_CONSOLE) tests.dll -noresult
 
 
-$(TARGET_APP):	lookingglass.cs		\
+$(TARGET_APP):	$(APP_SOURCE)	\
 				$(TARGET)
-	mcs -out:$@ -target:exe $(PACKAGES) $(INTERFACES) -r:$(BIN_DIR)/lookingglass.toolkit.dll lookingglass.cs
+	mcs -out:$@ -target:exe $(PACKAGES) $(INTERFACES) -r:$(BIN_DIR)/lookingglass.toolkit.dll $(APP_SOURCE)
 
 
 $(TARGET):		$(SOURCE)
