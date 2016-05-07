@@ -10,7 +10,7 @@ public class Toolkit
 
     public static Toolkit Create()
     {
-        var context = Factory.CreateContext();
+        var context = Adapter.Factory.CreateContext();
         return new Toolkit(context);
     }
 

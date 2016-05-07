@@ -1,6 +1,6 @@
 using System;
 
-namespace LookingGlass.Toolkit {
+namespace LookingGlass.Adapter {
 
 
 public class Factory

@@ -7,7 +7,7 @@ namespace LookingGlass.Adapter.GtkSharp {
 using CreateCanvas = System.Func<Cairo.Context, Flatland.Canvas>;
 
 
-public class Window : Adapter.Window
+class Window : Adapter.Window
 {
     readonly GtkSharpWindow child;
 

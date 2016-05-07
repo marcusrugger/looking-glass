@@ -7,7 +7,7 @@ SOURCE_GTKSHARP	=	adapter.context.cs				\
 					adapter.window.cs				\
 					adapter.gtk-sharp.context.cs	\
 					adapter.gtk-sharp.window.cs		\
-					toolkit.factory.gtk-sharp.cs
+					adapter.gtk-sharp.factory.cs
 
 SOURCE_TEST_APP	=	lookingglass.cs					\
 					lookingglass.window.cs
