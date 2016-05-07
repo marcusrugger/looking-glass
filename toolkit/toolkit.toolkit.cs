@@ -1,4 +1,5 @@
 using System;
+using LookingGlass;
 
 namespace LookingGlass.Toolkit {
 
@@ -9,8 +10,8 @@ public class Toolkit
 
     public static Toolkit Create()
     {
-        var context = LookingGlass.Toolkit.Factory.CreateContext();
-        return new LookingGlass.Toolkit.Toolkit(context);
+        var context = Factory.CreateContext();
+        return new Toolkit(context);
     }
 
     private Toolkit(Adapter.Context context)
@@ -30,7 +31,7 @@ public class Toolkit
 
     public ApplicationWindow CreateApplicationWindow()
     {
-        return new LookingGlass.Toolkit.ApplicationWindow(context);
+        return new ApplicationWindow(context);
     }
 }
 

@@ -4,7 +4,7 @@ using System;
 
 namespace LookingGlass.Adapter.GtkSharp {
 
-using CreateCanvas = Func<Cairo.Context, Flatland.Canvas>;
+using CreateCanvas = System.Func<Cairo.Context, Flatland.Canvas>;
 
 
 public class Window : Adapter.Window
@@ -26,7 +26,7 @@ public class Window : Adapter.Window
         readonly GtkSharp.Window parent;
         readonly CreateCanvas fnCreateCanvas;
 
-        public GtkSharpWindow(GtkSharp.Window parent, CreateCanvas fnCreateCanvas) : base("GtkSharp Test App")
+        public GtkSharpWindow(GtkSharp.Window parent, CreateCanvas fnCreateCanvas) : base("LookingGlass - GtkSharp")
         {
             this.parent = parent;
             this.fnCreateCanvas = fnCreateCanvas;
