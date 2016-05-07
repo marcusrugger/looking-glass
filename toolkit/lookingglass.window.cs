@@ -1,5 +1,6 @@
-using System;
+using Flatland;
 using LookingGlass.Toolkit;
+using System;
 
 
 public class AppWindow
@@ -11,20 +12,15 @@ public class AppWindow
     {
         this.toolkit = toolkit;
         this.window  = toolkit.CreateApplicationWindow();
-        this.window.OnDraw += DrawEvent;
+        this.window.DrawEvent  += DrawOn;
         this.window.Show();
     }
 
-    private void DrawOn(Flatland.Canvas canvas)
+    private void DrawOn(Canvas canvas)
     {
-        Flatland.Wireframe graphics = canvas.Wireframe();
-        graphics.Circle(200.0, 200.0, 100.0);
-        graphics.Line(200.0, 100.0, 200.0, 300.0);
-        graphics.Line(100.0, 200.0, 300.0, 200.0);
-    }
-
-    private void DrawEvent(Object obj, DrawEventArgs args)
-    {
-        DrawOn(args.Canvas);
+        Wireframe graphics = canvas.Wireframe();
+        graphics . SetLineColor(Colors.Red)   . Circle(200.0, 200.0, 100.0);
+        graphics . SetLineColor(Colors.Green) . Line(200.0, 100.0, 200.0, 300.0);
+        graphics . SetLineColor(Colors.Blue)  . Line(100.0, 200.0, 300.0, 200.0);
     }
 }

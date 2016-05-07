@@ -21,6 +21,11 @@ public class Context : Adapter.Context
         Application.Run();
     }
 
+    public override void Quit()
+    {
+        Application.Quit();
+    }
+
     public override Adapter.Window CreateWindow()
     {
         return new GtkSharp.Window(this, fnCreateCanvas);

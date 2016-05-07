@@ -3,41 +3,55 @@ using System;
 namespace LookingGlass.Toolkit {
 
 
-public class DrawEventArgs : EventArgs
-{
-    private Flatland.Canvas canvas;
+// public class DrawEventArgs : EventArgs
+// {
+//     private Flatland.Canvas canvas;
 
-    public DrawEventArgs(Flatland.Canvas canvas)
-    {
-        this.canvas = canvas;
-    }
+//     public DrawEventArgs(Flatland.Canvas canvas)
+//     {
+//         this.canvas = canvas;
+//     }
 
-    public Flatland.Canvas Canvas
-    { get { return canvas; } }
-}
+//     public Flatland.Canvas Canvas
+//     { get { return canvas; } }
+// }
 
 
 public abstract class Window
 {
-    public event EventHandler<DrawEventArgs> OnDraw;
+    public delegate void DrawEventHandler(Flatland.Canvas canvas);
+    public event DrawEventHandler DrawEvent;
 
-    readonly Adapter.Window adapterWindow;
+    public delegate void CloseEventHandler();
+    public event CloseEventHandler CloseEvent;
 
-    public Window(Adapter.Window adapterWindow)
+    readonly Adapter.Context adapterContext;
+    readonly Adapter.Window  adapterWindow;
+
+    public Window(Adapter.Context adapterContext)
     {
-        this.adapterWindow = adapterWindow;
-
-        this.adapterWindow.OnDraw += this.DrawEvent;
+        this.adapterContext = adapterContext;
+        this.adapterWindow  = adapterContext.CreateWindow();
+        this.adapterWindow.DrawEvent  += this.OnDrawEvent;
+        this.adapterWindow.CloseEvent += this.OnCloseEvent;
     }
+    
+    protected Adapter.Context Context
+    { get { return adapterContext; } }
 
     public void Show()
     {
         adapterWindow.Show();
     }
 
-    private void DrawEvent(Object obj, Adapter.DrawEventArgs args)
+    protected virtual void OnDrawEvent(Flatland.Canvas canvas)
     {
-        if (OnDraw != null) OnDraw(this, new DrawEventArgs(args.Canvas));
+        if (DrawEvent != null) DrawEvent(canvas);
+    }
+
+    protected virtual void OnCloseEvent()
+    {
+        if (CloseEvent != null) CloseEvent();
     }
 }
 

@@ -5,8 +5,13 @@ namespace LookingGlass.Toolkit {
 
 public class ApplicationWindow : LookingGlass.Toolkit.Window
 {
-    public ApplicationWindow(Adapter.Window adapterWindow) : base(adapterWindow)
+    public ApplicationWindow(Adapter.Context adapterContext) : base(adapterContext)
     {}
+
+    protected override void OnCloseEvent()
+    {
+        Context.Quit();
+    }
 }
 
 }

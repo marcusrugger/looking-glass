@@ -30,14 +30,20 @@ public class Window : Adapter.Window
         {
             this.parent = parent;
             this.fnCreateCanvas = fnCreateCanvas;
+            this.DeleteEvent += OnDeleteEvent;
             SetDefaultSize(1000, 1000);
         }
 
         protected override bool OnDrawn(Cairo.Context context)
         {
             bool result = base.OnDrawn(context);
-            parent.RaiseDrawEvent( fnCreateCanvas(context) );
+            parent.OnDrawEvent( fnCreateCanvas(context) );
             return result;
+        }
+
+        protected void OnDeleteEvent(Object obj, DeleteEventArgs args)
+        {
+            parent.OnCloseEvent();
         }
     }
 }

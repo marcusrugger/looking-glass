@@ -23,9 +23,14 @@ public class Toolkit
         context.Run();
     }
 
+    public void Quit()
+    {
+        context.Quit();
+    }
+
     public ApplicationWindow CreateApplicationWindow()
     {
-        return new LookingGlass.Toolkit.ApplicationWindow( context.CreateWindow() );
+        return new LookingGlass.Toolkit.ApplicationWindow(context);
     }
 }
 

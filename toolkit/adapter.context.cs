@@ -14,6 +14,7 @@ public abstract class Context
     {}
 
     public abstract void Run();
+    public abstract void Quit();
     public abstract Adapter.Window CreateWindow();
 }
 
